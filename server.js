@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
       players: [{ id: socket.id, name: playerName, symbol: 'X' }],
       board: Array(9).fill(null),
       current: 'X',
-      scores: { [socket.id]: 0 }, // ✅ player-based scores
+      scores: { [socket.id]: 0 }, // player-based scores
       gameOver: false,
       lastWinner: null
     };
@@ -69,7 +69,7 @@ io.on('connection', (socket) => {
     if (room.players.length >= 2) return socket.emit('error', { message: 'Room is full.' });
 
     room.players.push({ id: socket.id, name: playerName, symbol: 'O' });
-    room.scores[socket.id] = 0; // ✅ initialize score
+    room.scores[socket.id] = 0; // initialize score
 
     socket.join(upperCode);
     socket.roomCode = upperCode;
